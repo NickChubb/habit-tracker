@@ -1,2 +1,6 @@
-export * from "./welcome-screen/welcome-screen"
+export * from "./day-screen/day-screen"
+export * from "./skills-screen/skills-screen"
+export * from "./add-screen/add-screen"
+export * from "./calendar-screen/calendar-screen"
+export * from "./settings-screen/settings-screen"
 export * from "./demo-screen/demo-screen"

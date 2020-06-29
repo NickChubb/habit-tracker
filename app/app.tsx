@@ -12,7 +12,8 @@
 import "./i18n"
 import "./utils/ignore-warnings"
 import React, { useState, useEffect, useRef, FunctionComponent as Component } from "react"
-import { NavigationContainerRef } from "@react-navigation/native"
+import { NavigationContainerRef, NavigationContainer, TabActions } from "@react-navigation/native"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
 import * as storage from "./utils/storage"
 import {
@@ -23,6 +24,7 @@ import {
   useNavigationPersistence,
 } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
+import {DayScreen, SkillsScreen, SettingsScreen, CalendarScreen, AddScreen} from "./screens"
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
@@ -32,19 +34,14 @@ enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
+const Tab = createBottomTabNavigator();
+
 /**
  * This is the root component of our app.
  */
 const App: Component<{}> = () => {
   const navigationRef = useRef<NavigationContainerRef>()
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
-
-  setRootNavigation(navigationRef)
-  useBackButtonHandler(navigationRef, canExit)
-  const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
-    storage,
-    NAVIGATION_PERSISTENCE_KEY,
-  )
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
@@ -63,11 +60,15 @@ const App: Component<{}> = () => {
   return (
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
-        <RootNavigator
-          ref={navigationRef}
-          initialState={initialNavigationState}
-          onStateChange={onNavigationStateChange}
-        />
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="Day" component={DayScreen}/>
+            <Tab.Screen name="Skills" component={SkillsScreen}/>
+            <Tab.Screen name="Add" component={AddScreen}/>
+            <Tab.Screen name="Calendar" component={CalendarScreen}/>
+            <Tab.Screen name="Settings" component={SettingsScreen}/>            
+          </Tab.Navigator>
+        </NavigationContainer>
       </SafeAreaProvider>
     </RootStoreProvider>
   )
