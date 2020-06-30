@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
-import { color, spacing, typography } from "../../theme"
+import { color, spacing, typography, topbar } from "../../theme"
 
 
 const FULL: ViewStyle = { flex: 1 }
@@ -15,6 +15,8 @@ export const CalendarScreen: Component = observer(function CalendarScreen() {
     return(
         <View testID="CalendarScreen" style={FULL}>
             
+            <Text style={topbar}>Calendar</Text>
+
         </View>
     );
 });
