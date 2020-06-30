@@ -14,7 +14,7 @@ export const SettingsScreen: Component = observer(function SettingsScreen() {
 
     return(
         <View testID="SettingsScreen" style={FULL}>
-            <Wallpaper />
+            
 
         </View>
     );

@@ -23,7 +23,7 @@ export const SkillsScreen: Component = observer(function SkillsScreen() {
 
     return(
         <View testID="SkillsScreen" style={FULL}>
-            <Wallpaper />
+            
 
             
 

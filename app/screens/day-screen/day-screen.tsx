@@ -9,6 +9,15 @@ import moment from "moment"
 
 
 const FULL: ViewStyle = { flex: 1 }
+const TOPBAR: ViewStyle = {
+    backgroundColor: "#fff",
+    padding: 20,
+    paddingTop: 60,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#555555"
+}
 
 const DATE = moment(new Date()).format("MMMM Do, YYYY")
 
@@ -17,9 +26,9 @@ export const DayScreen: Component = observer(function DayScreen() {
 
     return(
         <View testID="DayScreen" style={FULL}>
-            <Wallpaper />
+            
 
-            <Text>{ DATE }</Text>
+            <Text style={TOPBAR}>{ DATE }</Text>
         </View>
     );
 });

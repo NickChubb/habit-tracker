@@ -14,8 +14,7 @@ export const CalendarScreen: Component = observer(function CalendarScreen() {
 
     return(
         <View testID="CalendarScreen" style={FULL}>
-            <Wallpaper />
-            <Text>Hello Michelle</Text>
+            
         </View>
     );
 });
