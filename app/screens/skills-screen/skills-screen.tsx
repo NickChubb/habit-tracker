@@ -23,7 +23,17 @@ const LIST_TITLE: ViewStyle = {
     fontWeight: "bold"
 }
 const LIST_LEVEL: ViewStyle = {
-    color: "#555555"
+    alignItems: 'center',
+    color: "#555555",
+    fontSize: 18
+}
+const LIST_LEVEL_NUM: ViewStyle = {
+    ...LIST_LEVEL,
+    fontWeight: "bold"
+}
+const LIST_EXPERIENCE: ViewStyle = {
+    color: "#555555",
+    flex: 1
 }
 
 // SKILLS is the object of the users experience in each life skill
@@ -57,12 +67,12 @@ let levelCalculator = (exp) => {
 function Skill({skill}){
     return(
         <View style={LIST_ITEM}>
-            <View style={{flexDirection: "row", margin: 3}}>
+            <View style={{flexDirection: "row", margin: 3, justifyContent: "space-between"}}>
                 <Text style={LIST_TITLE}>{skill.name}</Text>
-                <Text style={LIST_LEVEL}>{levelCalculator(skill.experience)}</Text>
+                <Text style={LIST_LEVEL}>Level: <Text style={LIST_LEVEL_NUM}>{Math.floor(levelCalculator(skill.experience))}</Text></Text>
             </View>
             <View style={{flexDirection: "row", margin: 3}}>
-                <Text style={{color: "black"}}>{skill.experience} / 1000</Text>
+                <Text style={LIST_EXPERIENCE}>{skill.experience} / 1000</Text>
                 <Progress.Bar progress={skill.experience / 1000} height={16} width={250}/>
             </View>
         </View>
