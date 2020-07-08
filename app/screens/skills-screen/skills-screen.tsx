@@ -7,8 +7,9 @@ import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing, typography, topbar } from "../../theme"
 import { iteratorSymbol } from "mobx/lib/internal"
 import * as Progress from 'react-native-progress'
+import AsyncStorage from "@react-native-community/async-storage"
 
-
+// Styling
 const FULL: ViewStyle = { flex: 1 }
 const LIST_ITEM: ViewStyle = {
     backgroundColor: "#fff",
@@ -32,6 +33,7 @@ const LIST_LEVEL_NUM: ViewStyle = {
     fontWeight: "bold"
 }
 const LIST_EXPERIENCE: ViewStyle = {
+    marginLeft: 2,
     color: "#555555",
     flex: 1
 }
@@ -60,6 +62,7 @@ const SKILLS = [
     }
 ]
 
+
 let levelCalculator = (exp) => {
     return exp / 1000;
 }
@@ -86,7 +89,7 @@ export const SkillsScreen: Component = observer(function SkillsScreen() {
         <View testID="SkillsScreen" style={FULL}>
             
             <Text style={topbar}>Skills</Text>
-            
+
             <FlatList 
                 data={SKILLS}
                 renderItem={({item}) => <Skill skill={item} />}

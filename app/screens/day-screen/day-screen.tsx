@@ -7,7 +7,7 @@ import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing, typography, topbar } from "../../theme"
 import moment from "moment"
 
-
+// Styling
 const FULL: ViewStyle = { flex: 1 }
 const LIST_ITEM: ViewStyle = {
     backgroundColor: "#fff",
@@ -35,6 +35,7 @@ const LIST_EXPERIENCE: ViewStyle = {
     flex: 1
 }
 
+// Current Date using moment.js
 const DATE = moment(new Date()).format("MMMM Do, YYYY")
 
 const TODO = [
@@ -76,6 +77,12 @@ function Todo({todo}){
     );
 }
 
+const deleteItem = (id) => {
+    setItems(prevItems => {
+        return prevItems.filter(item => item.id != id);
+    });
+}
+
 export const DayScreen: Component = observer(function DayScreen() {
     const navigation = useNavigation();
 
@@ -89,6 +96,10 @@ export const DayScreen: Component = observer(function DayScreen() {
                 data={TODO}
                 renderItem={({item}) => <Todo todo={item} />}
             />
+
+            <Text style={LIST_TITLE}>
+                Completed:
+            </Text>
         </View>
     );
 });
