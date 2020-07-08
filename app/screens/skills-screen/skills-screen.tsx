@@ -62,10 +62,9 @@ const SKILLS = [
     }
 ]
 
-
-let levelCalculator = (exp) => {
+let levelCalculator = function(exp: number): number {
     return exp / 1000;
-}
+};
 
 function Skill({skill}){
     return(
