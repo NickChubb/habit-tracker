@@ -11,6 +11,14 @@ import { T } from "ramda"
 const FULL: ViewStyle = { 
     flex: 1
 }
+const TEXT: ViewStyle = {
+    color: "#555555",
+    fontSize: 18
+}
+const BOLD: ViewStyle = {
+    ...TEXT,
+    fontWeight: "bold"
+}
 const INPUT: ViewStyle = {
     height: 60,
     padding: 8,
@@ -32,16 +40,22 @@ export const AddScreen: Component = observer(function AddScreen() {
         <View testID="AddScreen" style={FULL}>
             <Text style={topbar}>Add an Activity</Text>
 
-            <Text>Enter a New Activity</Text>
-            <TextInput style={INPUT} placeholder="Add item..." />
+            <View>
+                <Text style={TEXT}>Enter a New Activity</Text>
+                <TextInput style={INPUT} placeholder="Add item..." />
+            </View>
 
-            <Text>How long did it take you to complete?</Text>
+            <View> 
+                <Text style={TEXT}>How long did it take you to complete?</Text>
+            </View>
 
-            <Text>What skill does this activity fall under?</Text>
+            <View>  
+                <Text style={TEXT}>What skill does this activity fall under?</Text>
+            </View>
 
             <View testID="ExperienceCalculator" style={{flexDirection: "row"}}>
-                <Text style={{color: "#555555"}}>Experience:</Text>
-                <Text style={{color: "#555555", fontWeight: "bold"}}> {experienceCalculator(activityTime)}</Text>
+                <Text style={TEXT}>Experience:</Text>
+                <Text style={BOLD}> {experienceCalculator(activityTime)}</Text>
             </View> 
 
             <Button></Button>
