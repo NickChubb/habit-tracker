@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component } from "react"
+import React, { FunctionComponent as Component, useState } from "react"
 import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView, TextInput, StyleSheet  } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -7,6 +7,7 @@ import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing, typography, topbar } from "../../theme"
 import { T } from "ramda"
 import RNPickerSelect from 'react-native-picker-select';
+import { act } from "react-test-renderer"
 
 const FULL: ViewStyle = { 
     flex: 1
@@ -88,20 +89,26 @@ const SKILLS = [
     }
 ]
 
+let experienceCalculator = function(time: string): string {
 
+    let int_time = parseInt(time);
 
-let experienceCalculator = function(time: number): number {
-    return time * 100;
+    if(isNaN(int_time)){
+        return "Enter a value";
+    }else{
+        return String(int_time * 100);
+    }
 };
-
-let activityTime = 5;
 
 //const onChange = textValue => 
 
 export const AddScreen: Component = observer(function AddScreen() {
+
     const navigation = useNavigation();
+    const [time, setTime] = useState("");
 
     return(
+        
         <View testID="AddScreen" style={FULL}>
             <Text style={topbar}>Add an Activity</Text>
 
@@ -113,7 +120,7 @@ export const AddScreen: Component = observer(function AddScreen() {
             <View style={SECTION}> 
                 <Text style={SECTION_TITLE}>How long did it take you to complete?</Text>
                 <View style={{flexDirection: "row"}}>
-                    <TextInput style={INPUT} placeholder="5..." />
+                    <TextInput style={INPUT} placeholder="5..." onChangeText={(time) => setTime(time)} defaultValue={time} />
                     <Text style={TIME_TEXT}>Minutes</Text>
                 </View>
             </View>
@@ -130,7 +137,7 @@ export const AddScreen: Component = observer(function AddScreen() {
             <View style={SECTION}>
                 <View testID="ExperienceCalculator" style={{flexDirection: "row"}}>
                     <Text style={TEXT}>Experience:</Text>
-                    <Text style={BOLD}> {experienceCalculator(activityTime)}</Text>
+                    <Text style={BOLD}> {experienceCalculator(time)}</Text>
                 </View> 
 
                 <View style={ADD_BUTTON}>

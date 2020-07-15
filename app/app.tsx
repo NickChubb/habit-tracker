@@ -85,7 +85,7 @@ const App: Component<{}> = () => {
 
                 // You can return any component that you like here!
                 return (
-                  <View style={{marginTop: 14}}>
+                  <View style={{marginTop: 16}}>
                     <FontAwesomeIcon icon={ iconName } />
                   </View>
                 );
