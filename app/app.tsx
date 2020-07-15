@@ -25,6 +25,9 @@ import {
 } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 import {DayScreen, SkillsScreen, SettingsScreen, CalendarScreen, AddScreen} from "./screens"
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
+import { faCheck, faChartBar, faPlusCircle, faCalendarCheck, faCog } from "@fortawesome/free-solid-svg-icons"
+import { View } from "react-native"
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
@@ -61,7 +64,37 @@ const App: Component<{}> = () => {
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator 
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === 'Day') {
+                  iconName = focused
+                    ? faCheck
+                    : faCheck;
+                } else if (route.name === 'Skills') {
+                  iconName = focused ? faChartBar : faChartBar;
+                } else if (route.name === 'Add') {
+                  iconName = focused ? faPlusCircle : faPlusCircle;
+                } else if (route.name === 'Calendar') {
+                  iconName = focused ? faCalendarCheck : faCalendarCheck;
+                } else if (route.name === 'Settings') {
+                  iconName = focused ? faCog : faCog;
+                }
+
+                // You can return any component that you like here!
+                return (
+                  <View style={{marginTop: 14}}>
+                    <FontAwesomeIcon icon={ iconName } />
+                  </View>
+                );
+              },
+            })}
+            tabBarOptions={{
+              activeTintColor: 'tomato',
+              inactiveTintColor: 'gray',
+            }}>
             <Tab.Screen name="Day" component={DayScreen}/>
             <Tab.Screen name="Skills" component={SkillsScreen}/>
             <Tab.Screen name="Add" component={AddScreen}/>

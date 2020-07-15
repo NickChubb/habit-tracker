@@ -19,9 +19,22 @@ const BOLD: ViewStyle = {
     ...TEXT,
     fontWeight: "bold"
 }
+const SECTION: ViewStyle = {
+    backgroundColor: "#fff",
+    padding: 10,
+    marginTop: 4
+}
+const SECTION_TITLE: ViewStyle = {
+    ...TEXT,
+    marginBottom: 4
+}
 const INPUT: ViewStyle = {
-    height: 60,
-    padding: 8,
+    padding: 10,
+    fontSize: 16
+}
+const TIME_TEXT: ViewStyle = {
+    ...BOLD,
+    padding: 10,
     fontSize: 16
 }
 const ADD_BUTTON: ViewStyle = {
@@ -92,19 +105,21 @@ export const AddScreen: Component = observer(function AddScreen() {
         <View testID="AddScreen" style={FULL}>
             <Text style={topbar}>Add an Activity</Text>
 
-            <View>
-                <Text style={TEXT}>Enter a New Activity</Text>
+            <View style={SECTION}>
+                <Text style={SECTION_TITLE}>Enter a New Activity</Text>
                 <TextInput style={INPUT} placeholder="Add item..." />
             </View>
 
-            <View> 
-                <Text style={TEXT}>How long did it take you to complete?</Text>
-                <TextInput style={INPUT} placeholder="5..." />
-                <Text style={TEXT}>Minutes</Text>
+            <View style={SECTION}> 
+                <Text style={SECTION_TITLE}>How long did it take you to complete?</Text>
+                <View style={{flexDirection: "row"}}>
+                    <TextInput style={INPUT} placeholder="5..." />
+                    <Text style={TIME_TEXT}>Minutes</Text>
+                </View>
             </View>
 
-            <View>  
-                <Text style={TEXT}>What skill does this activity fall under?</Text>
+            <View style={SECTION}>  
+                <Text style={SECTION_TITLE}>What skill does this activity fall under?</Text>
                 <RNPickerSelect 
                     style={SKILL_PICKER}
                     onValueChange={(value) => console.log(value)}
@@ -112,14 +127,17 @@ export const AddScreen: Component = observer(function AddScreen() {
                 />
             </View>
 
-            <View testID="ExperienceCalculator" style={{flexDirection: "row"}}>
-                <Text style={TEXT}>Experience:</Text>
-                <Text style={BOLD}> {experienceCalculator(activityTime)}</Text>
-            </View> 
+            <View style={SECTION}>
+                <View testID="ExperienceCalculator" style={{flexDirection: "row"}}>
+                    <Text style={TEXT}>Experience:</Text>
+                    <Text style={BOLD}> {experienceCalculator(activityTime)}</Text>
+                </View> 
 
-            <View style={ADD_BUTTON}>
-                <Button text="Add Activity" textStyle={ADD_BUTTON}/>
+                <View style={ADD_BUTTON}>
+                    <Button text="Add Activity" textStyle={ADD_BUTTON}/>
+                </View>
             </View>
+            
             
         </View>
     );
