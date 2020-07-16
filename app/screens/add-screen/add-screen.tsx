@@ -22,25 +22,60 @@ const BOLD: ViewStyle = {
 }
 const SECTION: ViewStyle = {
     backgroundColor: "#fff",
-    padding: 10,
+    padding: 20,
     marginTop: 4
 }
 const SECTION_TITLE: ViewStyle = {
     ...TEXT,
-    marginBottom: 4
+    marginBottom: 12
+}
+const EXPERIENCE_SECTION: ViewStyle = {
+    padding: 8,
+    flexDirection: "row",
+    justifyContent: "space-between"
 }
 const INPUT: ViewStyle = {
     padding: 10,
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor: "#F1F1F1",
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: "#EAEAEA"
+}
+const NOTES_INPUT: ViewStyle = {
+    ...INPUT,
+    maxHeight: 120,
+    minHeight: 80,
+    marginTop: 4
+}
+const TIME_INPUT_SECTION: ViewStyle = {
+    flexDirection: "row",
+    backgroundColor: "#F1F1F1",
+    borderRadius: 4,
+    alignItems: "flex-end"
+}
+const TIME_INPUT: ViewStyle = {
+    ...INPUT,
+    width: "100%",
+    flex: 20
 }
 const TIME_TEXT: ViewStyle = {
     ...BOLD,
     padding: 10,
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor: "#F1F1F1",
+    flex: 8,
+    textAlign: "right"
 }
 const ADD_BUTTON: ViewStyle = {
     fontSize: 16,
     padding: 8
+}
+const BUTTON_TEXT: ViewStyle = {
+    ...BOLD,
+    padding: 8,
+    color: "#fff",
+    fontSize: 16
 }
 const SKILL_PICKER = StyleSheet.create({
     inputIOS: {
@@ -52,6 +87,7 @@ const SKILL_PICKER = StyleSheet.create({
       borderRadius: 4,
       color: 'black',
       paddingRight: 30, // to ensure the text is never behind the icon
+      marginTop: 8,
     },
     inputAndroid: {
       fontSize: 16,
@@ -113,14 +149,15 @@ export const AddScreen: Component = observer(function AddScreen() {
             <Text style={topbar}>Add an Activity</Text>
 
             <View style={SECTION}>
-                <Text style={SECTION_TITLE}>Enter a New Activity</Text>
-                <TextInput style={INPUT} placeholder="Add item..." />
+                <Text style={SECTION_TITLE}>Enter a New Activity:</Text>
+                <TextInput style={INPUT} placeholder="Title..." />
+                <TextInput style={NOTES_INPUT} multiline placeholder="Notes... (Optional)" />
             </View>
 
             <View style={SECTION}> 
                 <Text style={SECTION_TITLE}>How long did it take you to complete?</Text>
-                <View style={{flexDirection: "row"}}>
-                    <TextInput style={INPUT} placeholder="5..." onChangeText={(time) => setTime(time)} defaultValue={time} />
+                <View style={TIME_INPUT_SECTION}>
+                    <TextInput style={TIME_INPUT} placeholder="5..." onChangeText={(time) => setTime(time)} defaultValue={time} />
                     <Text style={TIME_TEXT}>Minutes</Text>
                 </View>
             </View>
@@ -135,13 +172,13 @@ export const AddScreen: Component = observer(function AddScreen() {
             </View>
 
             <View style={SECTION}>
-                <View testID="ExperienceCalculator" style={{flexDirection: "row"}}>
-                    <Text style={TEXT}>Experience:</Text>
+                <View style={EXPERIENCE_SECTION} testID="ExperienceCalculator">
+                    <Text style={TEXT}>Experience to be Gained:</Text>
                     <Text style={BOLD}> {experienceCalculator(time)}</Text>
                 </View> 
 
                 <View style={ADD_BUTTON}>
-                    <Button text="Add Activity" textStyle={ADD_BUTTON}/>
+                    <Button text="Add Activity" textStyle={BUTTON_TEXT}/>
                 </View>
             </View>
             
