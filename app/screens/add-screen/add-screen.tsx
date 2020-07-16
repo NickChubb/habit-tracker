@@ -27,7 +27,7 @@ const SECTION: ViewStyle = {
 }
 const SECTION_TITLE: ViewStyle = {
     ...TEXT,
-    marginBottom: 12
+    marginBottom: 16
 }
 const EXPERIENCE_SECTION: ViewStyle = {
     padding: 8,
@@ -87,7 +87,6 @@ const SKILL_PICKER = StyleSheet.create({
       borderRadius: 4,
       color: 'black',
       paddingRight: 30, // to ensure the text is never behind the icon
-      marginTop: 8,
     },
     inputAndroid: {
       fontSize: 16,
