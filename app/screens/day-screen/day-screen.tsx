@@ -6,6 +6,8 @@ import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing, typography, topbar } from "../../theme"
 import moment from "moment"
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
+import { faCheck } from "@fortawesome/free-solid-svg-icons"
 
 // Styling
 const FULL: ViewStyle = { flex: 1 }
@@ -13,8 +15,20 @@ const LIST_ITEM: ViewStyle = {
     backgroundColor: "#fff",
     fontWeight: "bold",
     marginTop: 5,
-    padding: 20,
-    textAlign: "center"
+    flexDirection: "row",
+    padding: 10
+}
+const LIST_TEXT: ViewStyle = {
+    textAlign: "center",
+    flex: 10
+}
+const CHECK: ViewStyle = {
+    color: "#555555",
+    fontSize: 40,
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "center",
+    flex: 2
 }
 const LIST_TITLE: ViewStyle = {
     color: "#555555",
@@ -65,13 +79,17 @@ const TODO = [
 function Todo({todo}){
     return(
         <View style={LIST_ITEM}>
-            <View style={{flexDirection: "row", margin: 3, justifyContent: "space-between"}}>
-                <Text style={LIST_TITLE}>{todo.title}</Text>
-                <Text style={LIST_LEVEL}>Level: <Text style={LIST_LEVEL_NUM}>{todo.priority}</Text></Text>
+            <View style={CHECK}>
+                <FontAwesomeIcon icon={ faCheck } size="26" />
             </View>
-            <View style={{flexDirection: "row", margin: 3}}>
-                <Text style={LIST_EXPERIENCE}>Experience: {todo.experience}</Text>
-                
+            <View style={LIST_TEXT}>
+                <View style={{flexDirection: "row", margin: 3, justifyContent: "space-between"}}>
+                    <Text style={LIST_TITLE}>{todo.title}</Text>
+                </View>
+                <View style={{flexDirection: "row", margin: 3, justifyContent: "space-between"}}>
+                    <Text style={LIST_EXPERIENCE}>Experience: {todo.experience}</Text>
+                    <Text style={LIST_EXPERIENCE}>Priority: <Text style={LIST_LEVEL_NUM}>{("🔥").repeat(todo.priority)}</Text></Text>
+                </View>
             </View>
         </View>
     );

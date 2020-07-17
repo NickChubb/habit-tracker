@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { observer } from "mobx-react-lite"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing, typography, topbar } from "../../theme"
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars'
 
 
 const FULL: ViewStyle = { flex: 1 }
@@ -16,6 +17,8 @@ export const CalendarScreen: Component = observer(function CalendarScreen() {
         <View testID="CalendarScreen" style={FULL}>
             
             <Text style={topbar}>Calendar</Text>
+
+            < Calendar />
 
         </View>
     );
