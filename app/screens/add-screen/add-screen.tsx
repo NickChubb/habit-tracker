@@ -1,5 +1,5 @@
 import React, { FunctionComponent as Component, useState } from "react"
-import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView, TextInput, StyleSheet  } from "react-native"
+import { View, Image, ViewStyle, TextStyle, ImageStyle, SafeAreaView, TextInput, Switch, StyleSheet  } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { observer } from "mobx-react-lite"
@@ -178,6 +178,13 @@ export const AddScreen: Component = observer(function AddScreen() {
 
                 <View style={ADD_BUTTON}>
                     <Button text="Add Activity" textStyle={BUTTON_TEXT}/>
+                </View>
+
+                <View style={EXPERIENCE_SECTION}>
+                    <Text style={TEXT}>Make Daily?</Text>
+                    <Switch></Switch>
+                    <Text style={TEXT}>Priority:</Text>
+                    <Text>🔥🔥🔥</Text>
                 </View>
             </View>
             
